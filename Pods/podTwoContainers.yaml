@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pythonservers
+spec:
+  containers:
+  - name: pythonserverone
+    image: python:3.12-alpine3.24
+    command: ['sh', '-c', 'echo cont1 > index.html && python -m http.server 8080']
+  - name: pythonservertwo
+    image: python:3.12-alpine3.24
+    command: ['sh', '-c', 'echo cont2 > index.html && python -m http.server 8080']

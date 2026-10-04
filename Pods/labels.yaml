@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app: frontend
+    env: development
+spec:
+  containers:
+  - name: nginx
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx2
+  labels:
+    app: backend
+    env: production
+spec:
+  containers:
+  - name: nginx2
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 8080
