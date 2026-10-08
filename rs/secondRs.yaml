@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: frontend-python-rs
+  labels:
+    app: frontend
+spec:
+  replicas: 5 # Number of pods to be created
+  selector:   # Match the labels of the pods to be managed by this ReplicaSet
+    matchLabels:
+      app: frontend
+  template: # The pod template used by this ReplicaSet if it needs to create new pods
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: pythonserverone
+          image: python:3.12-alpine3.24
+          command: ['sh', '-c', 'echo cont1 > index.html && python -m http.server 8081']
+        - name: pythonservertwo
+          image: python:3.12-alpine3.24
+          command: ['sh', '-c', 'echo cont2 > index.html && python -m http.server 8082']

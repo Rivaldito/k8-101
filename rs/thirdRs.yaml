@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: third-rs
+  labels:
+    type: balancer
+spec:
+  replicas: 3 # Number of pods to be created
+  selector:   # Match the labels of the pods to be managed by this ReplicaSet
+    matchLabels:
+      type: balancer
+  template: # The pod template used by this ReplicaSet if it needs to create new pods
+    metadata:
+      labels:
+        type: balancer
+    spec:
+      containers:
+      - name: nginx-balancer
+        image: nginx:1.14.1
